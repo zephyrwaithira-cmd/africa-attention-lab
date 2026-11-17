@@ -1,0 +1,10 @@
+node_modules/
+dist/
+backups/
+.env
+.env.*
+*.local
+*.log
+aal-*.json
+.vscode/
+.DS_Store

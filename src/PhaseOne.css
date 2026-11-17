@@ -1,0 +1,17 @@
+.phase-one { align-items: flex-start; }
+.phase-one .phase-card { max-width: 960px; }
+.phase-one p, .phase-one li { line-height: 1.65; }
+.phase-one .phase-timer { margin-top: 28px; font-size: 32px; font-weight: 800; color: #176b82; font-variant-numeric: tabular-nums; }
+.phase-one .phase-timer span { font-size: 15px; font-weight: 400; }
+.phase-one .evidence-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.phase-one details { padding: 16px; border: 1px solid #cbd5e1; border-radius: 10px; }
+.phase-one summary { cursor: pointer; font-weight: 700; }
+.phase-one fieldset { border: 0; padding: 0; margin: 28px 0; min-width: 0; }
+.phase-one legend { font-size: 24px; font-weight: 700; margin-bottom: 18px; }
+.phase-one .phase-option { display: flex; gap: 12px; align-items: baseline; padding: 12px; background: #f2f7f9; border-radius: 8px; }
+.phase-one textarea { width: 100%; font: inherit; line-height: 1.6; padding: 12px; border: 1px solid #718096; border-radius: 8px; resize: vertical; }
+.phase-one textarea:disabled { color: #17243b; background: #f2f5f9; opacity: 1; }
+.phase-one .response-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.phase-one .event-log { margin-top: 24px; overflow-wrap: anywhere; font-size: 13px; }
+.phase-one :focus-visible { outline: 3px solid #bc6811; outline-offset: 4px; }
+@media (max-width: 600px) { .phase-one .evidence-grid { grid-template-columns: 1fr; } }
