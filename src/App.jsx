@@ -1,5 +1,6 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import FacilitatorDashboard from "./FacilitatorDashboard";
 import PhaseOne from "./PhaseOne";
 import IndividualJourney from "./IndividualJourney";
 import "./App.css";
@@ -10,12 +11,19 @@ function App() {
   const [consent, setConsent] = useState(false);
   const [started, setStarted] = useState(false);
   const [individual, setIndividual] = useState(false);
+  const [facilitator, setFacilitator] = useState(() => window.location.hash === '#facilitator');
+  useEffect(() => {
+    const update = () => setFacilitator(window.location.hash === '#facilitator');
+    window.addEventListener('hashchange', update);
+    return () => window.removeEventListener('hashchange', update);
+  }, []);
 
   function beginChallenge() {
     if (!participantId.trim() || !consent) return;
     setStarted(true);
   }
 
+  if (facilitator) return <FacilitatorDashboard />;
   if (started) {
     return individual ? <IndividualJourney key={participantId.trim()} participantId={participantId.trim()} /> : <PhaseOne key={participantId.trim()} participantId={participantId.trim()} onContinue={() => setIndividual(true)} />;
   }
@@ -65,6 +73,7 @@ function App() {
             and learning purposes.
           </span>
         </label>
+        <p className="collection-entry">Progress is saved in this browser. At the end, you can choose to share your session with your facilitator or download a copy. Use a participant code rather than your name.</p>
 
         <button
           onClick={beginChallenge}
@@ -76,6 +85,7 @@ function App() {
         <p className="footer">
           International Leadership University · Pilot 2027
         </p>
+        <p className="collection-entry"><a href="#facilitator">Facilitator sign-in</a></p>
       </div>
     </main>
   );

@@ -168,9 +168,8 @@ const analysis = done
 <p className="notice">
   Single-device prototype. Challenge progress and event
   timestamps are saved in this browser so you can resume
-  after refreshing. Data remains on this device and is
-  not sent to a server. This is not yet a secure student
-  records system.
+  after refreshing. Your responses stay on this device unless you choose
+  to share your completed journey with the facilitator at the end.
 </p>    <section aria-labelledby="briefing-title"><h2 id="briefing-title">Your briefing</h2>
       <p>A fictional district hospital’s oxygen delivery has been delayed. Your coordination team must propose a supply plan within a limited budget, account for uncertainty, and explain a fallback.</p>
       <p>This is a fictional logistics exercise, not medical guidance. Do not allocate treatment to patients. All quantities and costs are invented.</p>
@@ -192,7 +191,7 @@ const analysis = done
 </button>
 <p>
   Download a snapshot of this participant’s current Phase 1 session.
-  Active sessions are exported as drafts. Nothing is sent to a server.
+  Active sessions are exported as drafts. This download does not send data to a server.
 </p>
       {done && <section><h2>{state.status === 'submitted' ? 'Submitted response' : 'Unsubmitted draft'}</h2><p><strong>{state.decision || 'No decision selected'}</strong></p><p className="response-text">{state.rationale || 'No rationale entered.'}</p><p>No score or collaboration assessment is produced by this prototype. Continue to the individual case studies when you are ready.</p></section>}
       

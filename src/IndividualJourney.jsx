@@ -4,6 +4,7 @@ import { initial, reducer, restore, duration, canSubmit, exportSession } from '.
 import './Islands.css';
 import './CaseStudies.css';
 import OpenPathGame from './OpenPathGame';
+import SessionSubmission from './SessionSubmission';
 
 function load(key, oldKey) {
   let raw = null;
@@ -83,6 +84,7 @@ export default function IndividualJourney({ participantId }) {
           <p role="status">{s.status === 'expired' ? 'Time is up. Committed decisions and any unfinished draft are retained. This is recorded as expired, not fully submitted.' : current ? 'You completed all four decisions. Review the trade-offs you chose below.' : 'Your reflection is complete. Download your session for your own record or discussion with a facilitator.'}</p>
           {current ? <>{s.status === 'submitted' && <div className="consequence"><strong>Final fictional consequence</strong><p>{s.decisions.at(-1).outcome}</p></div>}<DecisionTrail records={s.decisions}/>{s.status === 'expired' && s.decisions.length === s.scene && <div className="feedback"><strong>Unfinished round: {scene.title}</strong><p>Draft choice: {scene.options.find(o => o.id === s.selected)?.title ?? 'No choice selected'}</p><p>{s.note || 'No draft note entered.'}</p></div>}</> : <><p>Confidence: {s.confidence}/10 · self-reported</p>{s.reflection.map((r, i) => <div key={i} className="feedback"><strong>{['Evidence that mattered', 'A decision you reconsidered', 'A next step'][i]}</strong><p>{r || 'Not answered'}</p></div>)}</>}
           {current ? <button onClick={() => act('next-case')}>Continue to {cases[s.caseIndex + 1]?.company ?? 'reflection'} →</button> : <button onClick={download}>Download completed session ↓</button>}
+          {!current && !loaded.error && <SessionSubmission participantId={participantId} state={s} getExport={() => exportSession(s, participantId, readStored(`aal-phase-one-${participantId}`), null, Date.now())} />}
         </> : s.caseIndex === 3 ? <>
           <h2 ref={heading} tabIndex={-1}>Connect the four contexts</h2><p>Your hospital response is included in the export. Below are the choices you made in the three individual cases.</p>
           {s.records.map(r => <details className="reflection-review" key={r.caseIndex}><summary>{cases[r.caseIndex].company} · {r.status} · {r.decisions.length}/4 decisions</summary><DecisionTrail records={r.decisions}/></details>)}

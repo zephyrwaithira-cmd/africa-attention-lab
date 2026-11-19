@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "node --test caseEngine.test.js openPath.test.js guidedWorlds.test.js",
+    "test": "node --test caseEngine.test.js openPath.test.js guidedWorlds.test.js collection.test.js",
     "build:pages": "vite build --base=./ --outDir docs && node scripts/mark-pages.mjs"
   },
   "dependencies": {
